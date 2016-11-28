@@ -1,6 +1,6 @@
 command: "echo $(ps -A -o %cpu | awk '{s+=$1} END {print s}') $(hostinfo | grep logically | cut -d' ' -f1) | awk '{printf(\"%.2f%%\", $1/$2)}'"
 
-refreshFrequency: 2000 # ms
+refreshFrequency: 1000 # ms
 
 render: (output) ->
   """
