@@ -1,4 +1,4 @@
-command: "ESC=`printf \"\e\"`; ps -A -o %cpu | awk '{s+=$1} END {printf(\"%.2f\",s/8);}'"
+command: "echo $(ps -A -o %cpu | awk '{s+=$1} END {print s}') $(hostinfo | grep logically | cut -d' ' -f1) | awk '{printf(\"%.2f%%\", $1/$2)}'"
 
 refreshFrequency: 2000 # ms
 
@@ -16,6 +16,6 @@ update: (output, el) ->
 style: """
   color: #d5c4a1
   font: 11px Input Mono
-  right: 325px
+  right: 330px
   top: 6px
 """
