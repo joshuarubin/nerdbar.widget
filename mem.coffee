@@ -1,6 +1,6 @@
 command: "echo $(vm_stat | egrep 'free|inactive' | awk '{s+=$3} END {print \"\" s}') $(sysctl hw.memsize | awk '{print $2}') | awk '{printf(\"%.2f%%\", (1-($1*4096)/$2) * 100)}'"
 
-refreshFrequency: 30000 # ms
+refreshFrequency: 1000 # ms
 
 render: (output) ->
   """
