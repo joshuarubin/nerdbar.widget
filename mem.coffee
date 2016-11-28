@@ -4,23 +4,18 @@ refreshFrequency: 30000 # ms
 
 render: (output) ->
   """
-  <link rel="stylesheet" href="./assets/font-awesome/css/font-awesome.min.css" />
-  <div class="mem"
+  <div class="mem">
+    <span class="fa fa-hdd-o"></span>
     <span></span>
-    <span class="icon"></span>
   </div>
   """
 
 update: (output, el) ->
-    $(".mem span:first-child", el).text("  #{output}")
-    $icon = $(".mem span.icon", el)
-    $icon.removeClass().addClass("icon")
-    $icon.addClass("fa fa-hdd-o")
+    $(".mem span:last-child", el).text("  #{output}")
 
 style: """
-  -webkit-font-smoothing: antialiased
   color: #d5c4a1
-  font: 10px Input
-  right: 215px
+  font: 11px Input Mono
+  right: 265px
   top: 6px
 """

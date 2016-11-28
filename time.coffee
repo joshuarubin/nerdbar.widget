@@ -1,26 +1,21 @@
-command: "date +\"%H:%M\""
+command: "date +\"%I:%M:%S %p\""
 
-refreshFrequency: 10000 # ms
+refreshFrequency: 100 # ms
 
 render: (output) ->
   """
-  <link rel="stylesheet" href="./assets/font-awesome/css/font-awesome.min.css" />
-  <div class="time"
+  <div class="time">
+    <span class="fa fa-clock-o"></span>
     <span></span>
-    <span class="icon"></span>
   </div>
   """
 
 update: (output, el) ->
-    $(".time span:first-child", el).text("  #{output}")
-    $icon = $(".time span.icon", el)
-    $icon.removeClass().addClass("icon")
-    $icon.addClass("fa fa-clock-o")
+    $(".time span:last-child", el).text("  #{output}")
 
 style: """
-  -webkit-font-smoothing: antialiased
   color: #d5c4a1
-  font: 10px Input
+  font: 11px Input Mono
   right: 10px
   top: 6px
 """
