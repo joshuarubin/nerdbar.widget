@@ -2,20 +2,12 @@ command: "echo $(vm_stat | egrep 'free|inactive' | awk '{s+=$3} END {print \"\" 
 
 refreshFrequency: 5000 # ms
 
-render: (output) ->
-  """
-  <div class="mem">
-    <span class="fa fa-hdd-o"></span>
-    <span></span>
-  </div>
-  """
-
 update: (output, el) ->
-    $(".mem span:last-child", el).text("  #{output}")
+    $(el).text("#{output}")
 
 style: """
   color: #d5c4a1
   font: 11px Input Mono
-  right: 265px
+  right: 258px
   top: 6px
 """

@@ -2,20 +2,12 @@ command: "echo $(ps -A -o %cpu | awk '{s+=$1} END {print s}') $(hostinfo | grep 
 
 refreshFrequency: 1000 # ms
 
-render: (output) ->
-  """
-  <div class="cpu">
-    <span class="fa fa-bar-chart"></span>
-    <span></span>
-  </div>
-  """
-
 update: (output, el) ->
-    $(".cpu span:last-child", el).text("  #{output}")
+  $(el).text("#{output}")
 
 style: """
   color: #d5c4a1
   font: 11px Input Mono
-  right: 330px
+  right: 319px
   top: 6px
 """
