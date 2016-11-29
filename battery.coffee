@@ -1,6 +1,6 @@
-command: "pmset -g batt | egrep '([0-9]+\%).*' -o | cut -f1 -d'%'| awk '{printf(\"%.0f%%\", $1)}'"
+command: "pmset -g batt | egrep '([0-9]+\%).*' -o | awk '{print $1,$2}' | sed 's|;||g'"
 
-refreshFrequency: 15000 # ms
+refreshFrequency: 1000 # ms
 
 render: (output) ->
   """
@@ -11,22 +11,22 @@ render: (output) ->
   """
 
 update: (output, el) ->
-    bat = parseInt(output)
-    $icon = $(".battery span.icon", el)
-    $icon.removeClass().addClass("icon").addClass("fa #{@icon(bat)}")
-    $(".battery span:last-child", el).text("  #{output}")
+  output = output.trim().split(" ")
+  bat = parseInt(output[0])
 
-icon: (output) =>
-  return if output > 90
-    "fa-battery-full"
-  else if output > 70
-    "fa-battery-three-quarters"
-  else if output > 40
-    "fa-battery-half"
-  else if output > 20
-    "fa-battery-quarter"
-  else
-    "fa-battery-empty"
+  $icon = $(".battery span.icon", el)
+  $icon.removeClass().addClass("icon").addClass("fa #{@icon(bat, output[1])}")
+  $(".battery span:last-child", el).text("  #{output[0]}")
+
+icon: (output, status) ->
+  return switch
+    when status == "charging" then "fa-bolt"
+    when status == "AC" then "fa-exclamation-triangle"
+    when output > 92 then "fa-battery-full"
+    when output > 69 then "fa-battery-three-quarters"
+    when output > 46 then "fa-battery-half"
+    when output > 23 then "fa-battery-quarter"
+    else "fa-battery-empty"
 
 style: """
   font: 11px Input Mono
