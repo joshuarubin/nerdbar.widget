@@ -1,4 +1,4 @@
-command: "pmset -g batt | egrep '([0-9]+\%).*' -o --colour=auto | cut -f1 -d';'"
+command: "pmset -g batt | egrep '([0-9]+\%).*' -o | cut -f1 -d'%'| awk '{printf(\"%.0f%%\", $1)}'"
 
 refreshFrequency: 15000 # ms
 
