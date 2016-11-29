@@ -16,7 +16,7 @@ icon: (output) ->
   status = output[1]
 
   return switch
-    when status == "charging" then "fa-bolt"
+    when status == "charging", status == "charged" then "fa-bolt"
     when status == "AC" then "fa-exclamation-triangle"
     when batt > 92 then "fa-battery-full"
     when batt > 69 then "fa-battery-three-quarters"
