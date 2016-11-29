@@ -1,6 +1,6 @@
 command: "pmset -g batt | egrep '([0-9]+\%).*' -o | awk '{print $1,$2}' | sed 's|;||g'"
 
-refreshFrequency: 1000 # ms
+refreshFrequency: 5000 # ms
 
 render: (output) ->
   """

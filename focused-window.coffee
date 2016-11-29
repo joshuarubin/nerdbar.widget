@@ -1,6 +1,6 @@
 command: "echo $(/usr/local/bin/kwmc query space active tag)"
 
-refreshFrequency: 500 # ms
+refreshFrequency: 1000 # ms
 
 render: (output) ->
   """
